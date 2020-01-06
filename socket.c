@@ -10,7 +10,7 @@
 #include <sys/shm.h>
 #include "socket.h"
 
-#define QUEUE  20
+#define QUEUE 20
 #define BUFFER_SIZE 1024
 
 int socket_build(char *address, char *port_s) 

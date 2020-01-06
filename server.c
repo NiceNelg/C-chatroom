@@ -13,12 +13,11 @@
  *
  * @return  
  */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 
     DList *test;
     DListNode *node;
-
-
 
     test = dlist_create();
 
@@ -27,7 +26,8 @@ int main(int argc, char *argv[]) {
 
     printf("%s\n", (char *)node->data);
 
-printf("hh\n");return 0;
+    printf("hh\n");
+    return 0;
     //int opt = 0;
     //int options_index = 0;
     //char *address;
@@ -38,7 +38,7 @@ printf("hh\n");return 0;
     //}
 
     //while((opt=getopt(argc,argv,"i:p:")) != -1) {
-    //    
+    //
     //    switch(opt) {
     //        case 'i':
     //            printf("Address:%s\n", optarg);
@@ -55,5 +55,5 @@ printf("hh\n");return 0;
     //}
     //
     //socket_build(address, port);
-    //return 0;    
+    //return 0;
 }

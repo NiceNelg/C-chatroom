@@ -1,7 +1,7 @@
 #include "dlist.h"
 #include <malloc.h>
 /**
- * @brief   dlist_alloc ·ÖÅä½ÚµãÄÚ´æ
+ * @brief   dlist_alloc åˆ†é…èŠ‚ç‚¹å†…å­˜
  *
  * @return  
  */
@@ -11,21 +11,21 @@ static DListNode *dlist_alloc()
 }
 
 /**
- * @brief   dlist_create ´´½¨Á´±í
+ * @brief   dlist_create åˆ›å»ºé“¾è¡¨
  *
  * @return  
  */
 DList *dlist_create() 
 {
-    //calloc(·ÖÅä¸öÊı,µ¥¸öÔªËØµÄÄÚ´æ´óĞ¡);Óëmalloc()µÄ²î±ğÊÇcallocÔÚ·ÖÅäÄÚ´æµÄÊ±ºò
-    //×Ô¶¯½«ÄÚ´æ¿Õ¼äÄÚµÄÖµ¶¼ÖÃÎª0£¬ÎŞĞèÊ¹ÓÃmemset()½«ÄÚ´æ¿Õ¼äµÄÖµÖÃ0
+    //calloc(åˆ†é…ä¸ªæ•°,å•ä¸ªå…ƒç´ çš„å†…å­˜å¤§å°);ä¸malloc()çš„å·®åˆ«æ˜¯callocåœ¨åˆ†é…å†…å­˜çš„æ—¶å€™
+    //è‡ªåŠ¨å°†å†…å­˜ç©ºé—´å†…çš„å€¼éƒ½ç½®ä¸º0ï¼Œæ— éœ€ä½¿ç”¨memset()å°†å†…å­˜ç©ºé—´çš„å€¼ç½®0
     DList *dlist = (DList *)calloc(1, sizeof(DList));
     if(dlist == NULL) {
         return NULL;
     }
-    //¼ÇÂ¼½á¹¹Ìå³õÊ¼³¤¶È
+    //è®°å½•ç»“æ„ä½“åˆå§‹é•¿åº¦
     dlist->length = 0;
-    //¼ÇÂ¼Á´±íÍ·
+    //è®°å½•é“¾è¡¨å¤´
     dlist->head = dlist_alloc();
     if(dlist->head == NULL) {
         return NULL;
@@ -40,7 +40,7 @@ DList *dlist_create()
  */
 
 /**
- * @brief   data_node_check ¼ì²âÊäÈëÊı¾İ
+ * @brief   data_node_check æ£€æµ‹è¾“å…¥æ•°æ®
  *
  * @param   Dlist *dlist
  * @param   void *data
@@ -63,7 +63,7 @@ int data_node_check(DList *dlist, void *data)
 }
 
 /**
- * @brief   dlist_add Ìí¼Ó½Úµã
+ * @brief   dlist_add æ·»åŠ èŠ‚ç‚¹
  *
  * @param   DList *dlist
  * @param   int index
@@ -90,7 +90,7 @@ DListRet dlist_add(DList *dlist, int index, void *data)
     return_val_if_fail(index <= len, DList_RET_FAULT);
 
     
-    //Èô²åÈë½ÚµãµÄÎ»ÖÃÒª±ÈÁ´±í³¤¶È+1Òª³¤Ôò»á²úÉúÁ´±í¶ÏÁÑÎŞ·¨²åÈë
+    //è‹¥æ’å…¥èŠ‚ç‚¹çš„ä½ç½®è¦æ¯”é“¾è¡¨é•¿åº¦+1è¦é•¿åˆ™ä¼šäº§ç”Ÿé“¾è¡¨æ–­è£‚æ— æ³•æ’å…¥
     if(index > len) {
         return DList_RET_FAULT;
     }
@@ -102,7 +102,7 @@ DListRet dlist_add(DList *dlist, int index, void *data)
     
     node->data = data;
 
-    //³õÊ¼»¯Á´±íÍ·
+    //åˆå§‹åŒ–é“¾è¡¨å¤´
     if(dlist->head == NULL) {
         dlist->head = dlistnode;
         dlist->current = dlist->head;
@@ -111,7 +111,7 @@ DListRet dlist_add(DList *dlist, int index, void *data)
     }
 
     //node->data = strcpy(data);
-    //Í·²å
+    //å¤´æ’
     if(index == 0) {
         dlistnode = dlist->head;
         dlist->head = node;
@@ -144,7 +144,7 @@ DListRet dlist_add(DList *dlist, int index, void *data)
 }
 
 /**
- * @brief   dlist_delte É¾³ıÖ¸¶¨Î»ÖÃµÄ½Úµã
+ * @brief   dlist_delte åˆ é™¤æŒ‡å®šä½ç½®çš„èŠ‚ç‚¹
  *
  * @param   string  dlist
  * @param   string  index
@@ -214,7 +214,7 @@ DListRet dlist_delte(DList *dlist, int index)
 }
 
 /**
- * @brief   dlist_get »ñÈ¡Ö¸¶¨½Úµã
+ * @brief   dlist_get è·å–æŒ‡å®šèŠ‚ç‚¹
  *
  * @param   DList *dlist
  * @param   int  index
@@ -238,7 +238,7 @@ DListNode *dlist_get(DList *dlist, int index)
 }
 
 /**
- * @brief   dlist_foreach ±éÀúÁ´±í
+ * @brief   dlist_foreach éå†é“¾è¡¨
  *
  * @param   string  dlist
  * @param   string  visit_func
@@ -262,7 +262,7 @@ void *dlist_foreach(DList *dlist, VisitFunc visit_func, void *ctx)
 }
 
 /**
- * @brief   dlist_len »ñÈ¡Á´±í³¤¶È
+ * @brief   dlist_len è·å–é“¾è¡¨é•¿åº¦
  *
  * @param   string  dlist
  *
@@ -285,7 +285,7 @@ int dlist_len(DList *dlist)
 }
 
 /**
- * @brief   dlist_destroy Ïú»ÙÁ´±í
+ * @brief   dlist_destroy é”€æ¯é“¾è¡¨
  *
  * @param   string  dlist
  * @param   string  des_func

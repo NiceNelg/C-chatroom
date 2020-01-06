@@ -1,60 +1,60 @@
-/**
- *  Í¨ÓÃË«ÏòÁ´±í
- *
- *
- */
-#ifndef _DLIST_H_
-#define _DLIST_H_
-
-//Á´±í½Úµã
-typedef struct _DListNode{
-    void *data;
-    struct _DListNode *prev;
-    struct _DListNode *next;
-}DListNode;
-
-//Á´±í
-typedef struct _DList{
-    //Á´±íÍ·
-    DListNode *head;
-    //Á´±íµ±Ç°¼ÇÂ¼µÄ½Úµã
-    DListNode *current;
-    //Á´±íµ±Ç°³¤¶È
-    int length;
-}DList;
-
-//Á´±í²Ù×÷·µ»ØÖµ£¬Ã¶¾ÙÀàĞÍ£¬Öµ´Ó1¿ªÊ¼
-typedef enum _DListRet{
-    DList_RET_OK = 1,
-    DList_RET_FAULT,
-    DList_RET_OOM
-}DListRet;
-
-typedef void *(*VisitFunc)(void *ctx, void *data);
-typedef void (*DesFunc)(DList *dlist, int index);
-
-//²âÊÔºê
-#define return_val_if_fail(p, val) do {                                    \
-            if(!(p)) {                                                     \
-                printf("%s:%d "#p" failed\n", __func__, __LINE__);         \
-                return val;                                                \
-            }                                                              \
-        }while(0)
-
-
-//´´½¨Á´±í
-DList *dlist_create();
-//·µ»ØÁ´±í³¤¶È
-int dlist_len(DList *dlist);
-//»ñÈ¡Ö¸¶¨Î»ÖÃµÄ½ÚµãÖµ
-DListNode *dlist_get(DList *dlist, int index);
-//É¾³ıÖ¸¶¨Î»ÖÃµÄ½Úµã
-DListRet dlist_delete(DList *dlist, int index);
-//Ìí¼Ó½Úµã
-DListRet dlist_add(DList *dlist, int index, void *data);
-//±éÀúÁ´±í
-void *dlist_foreach(DList *dlist, VisitFunc visit_func, void *ctx);
-//Ïú»ÙÁ´±í
-DListRet dlist_destroy(DList *dlist, DesFunc des_func, int index);
-
-#endif
+/**                                                                             
+ *  é€šç”¨åŒå‘é“¾è¡¨                                                                
+ *                                                                              
+ *                                                                              
+ */                                                                             
+#ifndef _DLIST_H_                                                               
+#define _DLIST_H_                                                               
+                                                                                
+//é“¾è¡¨èŠ‚ç‚¹                                                                      
+typedef struct _DListNode{                                                      
+    void *data;                                                                 
+    struct _DListNode *prev;                                                    
+    struct _DListNode *next;                                                    
+}DListNode;                                                                     
+                                                                                
+//é“¾è¡¨                                                                          
+typedef struct _DList{                                                          
+    //é“¾è¡¨å¤´                                                                    
+    DListNode *head;                                                            
+    //é“¾è¡¨å½“å‰è®°å½•çš„èŠ‚ç‚¹                                                        
+    DListNode *current;                                                         
+    //é“¾è¡¨å½“å‰é•¿åº¦                                                              
+    int length;                                                                 
+}DList;                                                                         
+                                                                                
+//é“¾è¡¨æ“ä½œè¿”å›å€¼ï¼Œæšä¸¾ç±»å‹ï¼Œå€¼ä»1å¼€å§‹                                           
+typedef enum _DListRet{                                                         
+    DList_RET_OK = 1,                                                           
+    DList_RET_FAULT,                                                            
+    DList_RET_OOM                                                               
+}DListRet;                                                                      
+                                                                                
+typedef void *(*VisitFunc)(void *ctx, void *data);                              
+typedef void (*DesFunc)(DList *dlist, int index);                               
+                                                                                
+//æµ‹è¯•å®                                                                        
+#define return_val_if_fail(p, val) do {                                    \       
+            if(!(p)) {                                                     \       
+                printf("%s:%d "#p" failed\n", __func__, __LINE__);         \       
+                return val;                                                \       
+            }                                                              \       
+        }while(0)                                                               
+                                                                                
+                                                                                
+//åˆ›å»ºé“¾è¡¨                                                                      
+DList *dlist_create();                                                          
+//è¿”å›é“¾è¡¨é•¿åº¦                                                                  
+int dlist_len(DList *dlist);                                                    
+//è·å–æŒ‡å®šä½ç½®çš„èŠ‚ç‚¹å€¼                                                          
+DListNode *dlist_get(DList *dlist, int index);                                  
+//åˆ é™¤æŒ‡å®šä½ç½®çš„èŠ‚ç‚¹                                                            
+DListRet dlist_delete(DList *dlist, int index);                                 
+//æ·»åŠ èŠ‚ç‚¹                                                                      
+DListRet dlist_add(DList *dlist, int index, void *data);                        
+//éå†é“¾è¡¨                                                                      
+void *dlist_foreach(DList *dlist, VisitFunc visit_func, void *ctx);             
+//é”€æ¯é“¾è¡¨                                                                      
+DListRet dlist_destroy(DList *dlist, DesFunc des_func, int index);              
+                                                                                
+#endif 
